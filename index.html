@@ -1,0 +1,246 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>My Recipes — Minimal</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root{
+      --bg:#0f1724; /* deep navy */
+      --card:#0b1220; /* card */
+      --muted:#94a3b8;
+      --accent:#ffd166; /* warm accent */
+      --accent-2:#81e6d9;
+      --glass: rgba(255,255,255,0.03);
+      --radius:14px;
+      color-scheme: dark;
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%;margin:0;font-family:Inter, system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial; background:linear-gradient(180deg,var(--bg),#071226); color:#e6eef8}
+
+    .wrap{display:grid;grid-template-columns:320px 1fr;gap:28px;max-width:1100px;margin:36px auto;padding:28px}
+    @media (max-width:820px){.wrap{grid-template-columns:1fr;padding:18px;margin:14px auto} .sidebar{order:2} .content{order:1}}
+
+    /* Sidebar */
+    .sidebar{background:linear-gradient(180deg,var(--card),rgba(11,18,32,0.85));padding:18px;border-radius:var(--radius);backdrop-filter:blur(6px);min-height:420px}
+    .brand{display:flex;align-items:center;gap:12px;margin-bottom:12px}
+    .logo{width:44px;height:44px;border-radius:10px;background:linear-gradient(135deg,var(--accent),var(--accent-2));display:inline-grid;place-items:center;font-weight:700;color:#072023}
+    h1{font-size:18px;margin:0}
+    p.lead{margin:4px 0 14px;color:var(--muted);font-size:13px}
+
+    .thread-list{display:flex;flex-direction:column;gap:8px}
+    .thread{padding:10px 12px;border-radius:10px;background:transparent;border:1px solid transparent;cursor:pointer;text-decoration:none;color:inherit}
+    .thread:hover{background:rgba(255,255,255,0.02);border-color:rgba(255,255,255,0.03)}
+    .thread .title{font-weight:600}
+    .thread .meta{font-size:12px;color:var(--muted);margin-top:4px}
+
+    /* Content */
+    .content{padding:18px;border-radius:var(--radius);background:linear-gradient(180deg, rgba(255,255,255,0.02), rgba(255,255,255,0.01));min-height:420px}
+    .content header{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .search{background:var(--glass);border-radius:10px;padding:8px 10px;border:1px solid rgba(255,255,255,0.02)}
+
+    .recipe{padding:18px;border-radius:12px;background:linear-gradient(180deg, rgba(255,255,255,0.015), rgba(255,255,255,0.01));margin-bottom:18px;border:1px solid rgba(255,255,255,0.02)}
+    .recipe h2{margin:0 0 8px;font-size:20px}
+    .row{display:flex;gap:12px}
+    .images{display:flex;gap:10px}
+    .images img{width:100%;height:160px;object-fit:cover;border-radius:10px;border:1px solid rgba(0,0,0,0.3)}
+    .two-col{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:12px}
+    @media (max-width:820px){.two-col{grid-template-columns:1fr}}
+
+    .ingredients, .steps{background:rgba(255,255,255,0.015);padding:12px;border-radius:10px;border:1px solid rgba(255,255,255,0.02)}
+    .ingredients ul{margin:0;padding-left:18px}
+    .steps ol{margin:0;padding-left:18px}
+    .meta-row{display:flex;gap:12px;align-items:center;color:var(--muted);font-size:13px;margin-top:8px}
+
+    .tag{background:rgba(255,255,255,0.02);padding:6px 8px;border-radius:999px;font-size:12px}
+
+    /* Tiny footer */
+    footer{margin-top:18px;color:var(--muted);font-size:13px;text-align:center}
+
+    /* Anchor link styling */
+    .recipe:target{outline:3px solid rgba(255,209,102,0.07);box-shadow:0 6px 18px rgba(13,20,30,0.8)}
+
+    /* Minimal print support */
+    @media print{body{color:black;background:white} .wrap{box-shadow:none} .sidebar{display:none}}
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <aside class="sidebar">
+      <div class="brand">
+        <div class="logo">R</div>
+        <div>
+          <h1>Recipes</h1>
+          <p class="lead">No fluff — step by step recipes.</p>
+        </div>
+      </div>
+
+      <nav class="thread-list" aria-label="Recipes list">
+        <!-- Add or remove links here. Each link navigates to the recipe on this page. -->
+        <a class="thread" href="#recipe-1"><div class="title">Simple Tomato Pasta</div><div class="meta">20 min • 5 ingredients</div></a>
+        <a class="thread" href="#recipe-2"><div class="title">Pan-Seared Salmon</div><div class="meta">15 min • 6 ingredients</div></a>
+        <a class="thread" href="#recipe-3"><div class="title">Overnight Oats</div><div class="meta">Prep 5 min • overnight</div></a>
+        <!-- Duplicate the block above to add more recipes -->
+      </nav>
+
+      <div style="margin-top:14px;color:var(--muted);font-size:13px">
+        <div style="margin-bottom:6px">Tips</div>
+        <div>- Keep images < 2MB
+        <br>- Use two images (dish + step)</div>
+      </div>
+
+    </aside>
+
+    <main class="content">
+      <header>
+        <div>
+          <h3 style="margin:0">All recipes</h3>
+          <div style="color:var(--muted);font-size:13px;margin-top:6px">Click a recipe on the left to jump to it. Minimal, print-friendly.</div>
+        </div>
+        <div class="search">Search (Ctrl+F recommended)</div>
+      </header>
+
+      <!-- ===== Recipe 1 ===== -->
+      <article id="recipe-1" class="recipe">
+        <h2>Simple Tomato Pasta</h2>
+        <div class="meta-row">
+          <div class="tag">20 min</div>
+          <div class="tag">Vegetarian</div>
+          <div style="margin-left:auto;color:var(--muted);font-size:13px">Serves 2</div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <div class="images">
+              <img src="images/tomato-pasta-1.jpg" alt="Tomato pasta plated">
+              <img src="images/tomato-pasta-2.jpg" alt="Tomato sauce closeup">
+            </div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Quick: one pan sauce + boiled pasta.</div>
+          </div>
+
+          <div>
+            <div class="ingredients">
+              <strong>Ingredients</strong>
+              <ul>
+                <li>200 g pasta</li>
+                <li>1 can (400 g) crushed tomatoes</li>
+                <li>2 cloves garlic, minced</li>
+                <li>2 tbsp olive oil</li>
+                <li>Salt & pepper to taste</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="steps">
+          <strong>Steps</strong>
+          <ol>
+            <li>Boil pasta according to package directions; reserve 60 ml cooking water.</li>
+            <li>Heat oil in a pan, sauté garlic ~30s until fragrant.</li>
+            <li>Add crushed tomatoes, simmer 6–8 min. Add salt & pepper.</li>
+            <li>Toss pasta with sauce; add reserved water if needed to loosen.</li>
+            <li>Serve immediately.</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- ===== Recipe 2 ===== -->
+      <article id="recipe-2" class="recipe">
+        <h2>Pan-Seared Salmon</h2>
+        <div class="meta-row">
+          <div class="tag">15 min</div>
+          <div class="tag">Pescetarian</div>
+          <div style="margin-left:auto;color:var(--muted);font-size:13px">Serves 2</div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <div class="images">
+              <img src="images/salmon-1.jpg" alt="Salmon plated">
+              <img src="images/salmon-2.jpg" alt="Salmon in pan">
+            </div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Crispy skin, tender inside.</div>
+          </div>
+
+          <div>
+            <div class="ingredients">
+              <strong>Ingredients</strong>
+              <ul>
+                <li>2 salmon fillets (approx. 140 g each)</li>
+                <li>Salt, pepper</li>
+                <li>1 tbsp butter</li>
+                <li>1 tbsp olive oil</li>
+                <li>1 lemon</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="steps">
+          <strong>Steps</strong>
+          <ol>
+            <li>Pat salmon dry, season with salt and pepper.</li>
+            <li>Heat oil in a pan over medium-high. Place salmon skin-side down; press 20s to keep flat.</li>
+            <li>Cook 4–5 min skin-side, flip and add butter; cook 1–2 min more.</li>
+            <li>Squeeze lemon and serve.</li>
+          </ol>
+        </div>
+      </article>
+
+      <!-- ===== Recipe 3 ===== -->
+      <article id="recipe-3" class="recipe">
+        <h2>Overnight Oats</h2>
+        <div class="meta-row">
+          <div class="tag">Prep 5 min</div>
+          <div class="tag">Vegan option</div>
+          <div style="margin-left:auto;color:var(--muted);font-size:13px">Serves 1</div>
+        </div>
+
+        <div class="two-col">
+          <div>
+            <div class="images">
+              <img src="images/oats-1.jpg" alt="Overnight oats">
+              <img src="images/oats-2.jpg" alt="Oats jar">
+            </div>
+            <div style="margin-top:10px;color:var(--muted);font-size:13px">Prep the night before.</div>
+          </div>
+
+          <div>
+            <div class="ingredients">
+              <strong>Ingredients</strong>
+              <ul>
+                <li>60 g rolled oats</li>
+                <li>200 ml milk or plant milk</li>
+                <li>1 tbsp chia seeds (optional)</li>
+                <li>Sweetener to taste</li>
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div style="margin-top:12px" class="steps">
+          <strong>Steps</strong>
+          <ol>
+            <li>Combine oats, milk, chia, and sweetener in a jar.</li>
+            <li>Stir, seal, refrigerate overnight (6–8 hrs).</li>
+            <li>Top with fruit and eat cold.</li>
+          </ol>
+        </div>
+      </article>
+
+      <footer>Minimal Recipes • Images: place two images per recipe in <code>images/</code> folder</footer>
+    </main>
+  </div>
+
+  <!--
+    How to use:
+    - Save this file as `index.html` and put it in your static host root.
+    - Create an `images/` folder and add two images per recipe, matching the filenames.
+    - To add a recipe: duplicate one <article id="recipe-x"> block, update id, title, meta, images, ingredients and steps.
+    - This is pure static HTML/CSS — works on GitHub Pages / Netlify / Vercel / Cloudflare Pages.
+  -->
+</body>
+</html>
